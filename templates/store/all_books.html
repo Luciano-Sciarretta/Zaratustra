@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% load static %} {% block templatetag %} 
+{% load book_filters %}
+
+<div id="message-container">
+  {% if messages %}
+      {% for message in messages %}
+          <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+      {% endfor %}
+  {% endif %}
+</div>
+<div class="container mt-5" >
+  <div class="row  justify-content-start " >
+  
+    {% for book in books %}
+    <div class="col-lg-4 col-md-6 col-sm-12  card-wrapper  my-5 text-center"  >
+      <div class="card p-4 w-100 text-center justify-content-center "  >
+        <h4 class="text-center card-title ">{{book.title}}</h4>
+        <a href="{% url 'single_book' pk=book.id %}">
+          
+            <img src="{{book.cover_image.url}}" class="card-img-top img-fluid w-75  mx-auto" " alt="{{book.title}}">
+          
+        </a>
+        <div class="card-body">
+          <p class="card-text">{{ book.synopsis|truncatechars:100}}</p>
+          <form id="add-to-cart" class="add-to-cart-form"  method="post">
+            {% csrf_token %}
+            <input type="text"  hidden name="book_title"  value="{{book.title}}" >
+            <input type="text"  hidden name="book_id"  value="{{book.id}}" >
+            <input type="text"  hidden name="book_value"  value="1" >
+            <input type="submit" value=" add to cart" class="card-button" >
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'js/js-templates/localStorage-cart.js' %}"></script>
+{% endblock scripts %}
+
+ <!-- a ver si funca -->

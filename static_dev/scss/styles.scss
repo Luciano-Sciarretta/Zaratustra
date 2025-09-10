@@ -1,0 +1,14 @@
+@import "variables";
+@import "mixins";
+@import "bootstrap/bootstrap";
+@import "components/card-button.scss";
+@import "main_section/main-section";
+@import "main_section/navbar";
+@import "main_section/footer";
+@import "main_section/our_story";
+@import "main_section/our_books";
+@import "main_section/search_bar";
+@import "user/profile";
+
+
+// /* Este archivo carga a todos los demás */

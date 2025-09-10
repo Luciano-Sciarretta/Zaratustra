@@ -1,0 +1,17 @@
+
+
+@mixin button-style($main-color1, $font-family) {
+    background-color: $main-color1;
+    padding: 8px;
+    font-family: $font-family;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    text-decoration: none;
+  
+    &:hover {
+      background-color: rgba(183, 52, 58, 0.5);
+      opacity: 0.8;
+      
+    }
+}

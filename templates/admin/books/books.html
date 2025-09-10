@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block admin_books %}
+<div class="container">
+    <div class="row">
+        <div class="col12">
+            {% for book in books %}
+            <li>{{book.title}}:    {{book.status}}</li>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

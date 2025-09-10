@@ -1,0 +1,56 @@
+.form__container {
+  width: 500px;
+}
+.form-control {
+  border-radius: 0;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+
+.search-input {
+  margin: 0 auto;
+}
+
+.ui-autocomplete {
+  position: absolute;
+  background-color: $main-color2;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.ui-menu-item {
+  padding: 15px;
+  cursor: pointer;
+  list-style: none;
+  font-family: $font-family;
+}
+
+.ui-menu-item:hover {
+  background-color: $main-color1;
+
+  color: white;
+}
+.search-button {
+  background-color: $main-color1;
+  color: white;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: 7px 12px;
+  border: none;
+}
+#searchbar-book-container {
+  margin: 0 auto;
+}
+form label,
+input,
+select {
+  font-family: $font-family;
+  font-weight: 700;
+  padding: 7px 0;
+}
+form input,
+select {
+  font-weight: 300;
+}

@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block cart %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaratustra</title>
+</head>
+<body>
+    <div class="container mt-5 " >
+        <div class="row  justify-content-start  "  >
+            
+            {% for book in cart_books %}
+            <div class="col-lg-4 col-md-6 col-sm-12  card-wrapper  my-5 text-center " >
+                <div class="card p-4 w-100 text-center justify-content-center"  >
+                    <h4 class="text-center card-title" >{{ book.title }}</h4>
+                    <img src="{{ book.cover_image.url }}" class="card-img-top img-fluid w-75  mx-auto" alt="...">
+                    <div class="card-body">
+                      
+                      <p class="card-text">{{ book.synopsis|truncatechars:120 }}</p>
+                      <a    data-book-id = '{{book.id}}' class="card-button removeBookBtn" href="#" class="btn btn-primary">Remove from cart</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock cart %}
+
+{% block scripts %}
+<script src="{% static 'js/js-templates/remove_from_cart.js' %}">
+
+</script>
+
+{% endblock scripts %}

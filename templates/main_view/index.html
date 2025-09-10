@@ -1,0 +1,97 @@
+{% extends 'layout.html' %} {% load static %} {% block main %}
+
+<!-- <! ------------------ iMAGEN PRINCIPAL -------------------- > -->
+
+<!-- ----------------------BARRA DE BÚSQUEDA ------------------------------>
+<div class="container mb-3">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 form__container " >
+      <form action="" method="post" id="search-form" class="d-flex align-items-center justify-content-start" ">
+        {% csrf_token %}
+        <div class="search-input flex-grow-1" >{{ search }}</div>
+        <input
+          class="search-button "
+          type="button"
+          id="search-button-id"
+          value="Search"
+          style="margin: 15px 0 15px 0"
+        />
+      </form>
+    </div>
+  </div>
+
+  <div
+    id="searchbar-book-container"
+    class="col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 mx-auto"
+  ></div>
+</div>
+
+<!--                                IMAGEN PRINCIPAL                  -->
+
+<div class="container-fluid mb-5  " id="img-container">
+  <div class="row  " >
+    <div class="col-12   " >
+      <div class="image-container">
+      <img src="https://www.educaciontrespuntocero.com/wp-content/uploads/2016/12/libros-docente.jpg" alt="Imágenes de libros" class=" col-12 w-100 ">
+    </div>
+      <!-- Contenido del pop-up sobre la imagen -->
+     <div class="container-fluid  popup-window p-5" id="main-popup">
+      <h2 class="container-fluid">Welcome to Zaratustra</h2>
+    <p class="">Discover a world of knowledge and imagination at Zaratustra Library. We offer a diverse collection of books, from timeless classics to the latest bestsellers.</p>
+    <p class=""></p>Sign up for our newsletter to stay updated on upcoming events and special offers!</p>
+     </div>
+    </div>
+  </div>
+</div>
+
+<!---------------------------   CAROUSEL    ---------------------------------        -->
+
+<div class="container-fluid carousel__container  d-flex flex-column justify-content-center align-items-center pb-5 hide " >
+  <h1 class="carousel__title pt-5 pb-3 hide">New in the Bookstore</h1>
+  <div
+    id="carouselExampleFade"
+    class="carousel slide carousel-fade hide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner hide">
+      {% for book in books %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %} hide">
+        <img
+          src="{{ book.cover_image.url }}"
+          class="carousd-block w-100"
+          alt="..."
+        />
+      </div>
+      {% endfor %}
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleFade"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleFade"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+{% endblock main %} {% block scripts %}
+<script
+  type="text/javascript"
+  src="{% static 'js/js-templates/search-bar.js' %}"
+></script>
+<script>
+  gsap.from("#main-popup", {duration: 2, y: "70%", opacity: 0, ease: "power2.out"});
+  $("#id_querycom").autocomplete({ source: "/search_books/" });
+</script>
+{% endblock scripts %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% load static %} {% block store %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <h1>{{title}}</h1>
+      <h2>{{author}}</h2>
+      <h2>Precio: {{price}}</h2>
+      <img src="{{image.url}}" width="20%"   alt="">  
+      <a href="{% url 'all_books' %}">Ir a la Tienda</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
