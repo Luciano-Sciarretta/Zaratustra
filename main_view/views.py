@@ -33,7 +33,7 @@ def index(request):
     context["books"] = books
     search = SearchBookForm()
     context["search"] = search
-    return render(request, "main_view/index.html", context)
+    return render(request, "main_view/main_view.html", context)
 
 #Barra de búsqueda
 class SearchBook(View): 

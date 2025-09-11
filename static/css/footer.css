@@ -1,0 +1,95 @@
+.footer {
+    position: relative; /* necesario para el pseudo-elemento */
+    color: var(--color-text-light);
+    padding: 2rem;
+    min-height: 400px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/footer.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(50%) grayscale(100%);
+    z-index: 0; /* detrás del contenido */
+}
+
+.footer > * {
+    position: relative; /* contenido por encima de la imagen */
+    z-index: 1;
+}
+
+.list-unstyled li a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.list-unstyled li a:hover {
+    transform: scale(1.2);
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+
+/* íconos redes*/
+
+.footer__down-connect ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem; 
+}
+
+.footer__down-connect li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--color-text-light); 
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.fa-square-twitter{
+    color: #1DA1F2;
+}
+.fa-youtube {
+    color: #FF0000;
+}
+
+.fa-square-instagram{
+    color: #e57f0b;
+}
+
+.fa-square-facebook{
+    color: #1877F2;
+
+}
+
+
+.footer__down-connect li a:hover {
+  transform: scale(1.2); 
+}
+
+
+
+/* -------------------------MEDIA QUERIES -----------------*/
+
+@media (max-width: 768px) {
+    .footer {
+        min-height: auto;
+        padding-bottom: 4rem;
+        padding-top: 4rem;
+        background-position: top center;
+    }
+}

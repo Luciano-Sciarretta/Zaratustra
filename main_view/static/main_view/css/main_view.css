@@ -1,0 +1,44 @@
+#main-popup {
+    background-color: #b7343bd3;
+    color: var(--color-text-light);
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(40%);
+    border-radius: 12px;
+    max-width: 30rem;
+    text-align: center;
+    z-index: 10;
+}
+
+#img-container {
+  padding: 0;
+  margin: 0;
+}
+
+.custom-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 1000px;
+}
+
+#img-container img {
+  display: block;  
+  width: 100%;
+}
+
+
+/* -------------------CAROUSEL-------------------------*/
+
+.carousel-item img {
+  height: 100%;  
+  object-fit: contain; 
+  width: 100%;
+}
+
+.carousel-item {
+  position: relative; /* ahora las flechas se posicionarán respecto a cada item */
+  height: 600px;      /* o el alto que quieras */
+}
+

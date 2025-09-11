@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     
     
     #PROPIAS
-    "main_view.apps.Main_viewConfig",
+    "main_view.apps.MainViewConfig",
     "books.apps.BooksConfig",
     "users.apps.UsersConfig",
     "contact.apps.ContactConfig",
@@ -123,8 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static_dev"),)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
