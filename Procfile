@@ -1,1 +1,2 @@
-web: gunicorn Zaratustra.wsgi
+
+web: gunicorn Zaratustra.Zaratustra.wsgi
