@@ -13,7 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9+&o&a+vb5*ije8m)!cyxgdll2b4+6rnwc6ef6duu!y$c_$3b+'
 
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
 
 ALLOWED_HOSTS = ["Zaratustra.onrender.com"]
 
