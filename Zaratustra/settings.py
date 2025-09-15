@@ -13,10 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9+&o&a+vb5*ije8m)!cyxgdll2b4+6rnwc6ef6duu!y$c_$3b+'
 
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True
 
 
-ALLOWED_HOSTS = ["Zaratustra.onrender.com"]
+ALLOWED_HOSTS = ["zaratustra.onrender.com"]
 
 
 # Application definition
@@ -127,6 +127,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+TATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
