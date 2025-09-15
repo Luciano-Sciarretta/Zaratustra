@@ -1,14 +1,15 @@
 #main-popup {
-    background-color: #b7343bd3;
-    color: var(--color-text-light);
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(40%);
-    border-radius: 12px;
-    max-width: 30rem;
-    text-align: center;
-    z-index: 10;
+  background-color: #b7343bd3;
+  color: var(--color-text-light);
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(40%);
+  border-radius: 12px;
+  max-width: 30rem;
+  z-index: 10;
+  padding: 2rem;
+  text-align: start;
 }
 
 #img-container {
@@ -17,28 +18,67 @@
 }
 
 .custom-img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 1000px;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 1000px;
 }
 
 #img-container img {
-  display: block;  
+  display: block;
   width: 100%;
 }
-
 
 /* -------------------CAROUSEL-------------------------*/
 
 .carousel-item img {
-  height: 100%;  
-  object-fit: contain; 
+  height: 100%;
+  object-fit: contain;
   width: 100%;
 }
 
 .carousel-item {
-  position: relative; /* ahora las flechas se posicionarán respecto a cada item */
-  height: 600px;      /* o el alto que quieras */
+  position: relative;
+  height: 600px;
+ 
 }
 
+/*------------ media queries -----------*/
+@media (max-width: 1377px) {
+  html {
+    font-size: 15px;
+  }
+
+  #main-popup {
+    left: 35%;
+  }
+}
+
+@media (max-width: 1058px) {
+  #main-popup {
+    left: 30%;
+    transform: translateX(-30%);
+    max-width: 25rem;
+  }
+}
+
+@media (max-width: 881px) {
+  #main-popup {
+    transform: translateX(-50%);
+    left: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
+
+  #main-popup {
+    transform: translateX(-50%);
+    bottom: 160px;
+    max-width: 300px;
+    max-height: 250px;
+    padding: 1rem;
+  }
+}
