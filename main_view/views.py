@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from books.models import Book 
 from books.forms import SearchBookForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import json
 
 
@@ -12,13 +12,11 @@ def about_us(request):
     context = {}
     return render(request, "main_view/about_us.html", context)
 
-# Mostrar todos los libros y lógica de carrito
+
 
  # ----------------   barra de búsqueda  ---------------------------
 def index(request):
-    context = {
-        "nombre": "Luciano",
-        "proyecto": 'zaratustra'
+    context = {   
     }
     books = Book.objects.all()
     context["books"] = books
@@ -30,21 +28,21 @@ def index(request):
 class SearchBook(View): 
     def get(self, request):
        
-       if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-           
-           input_word = request.GET.get("term", "")    
-           
+       try:
+           input_word = request.GET.get("q", "")   
+           print("input-word:", input_word) 
            books = Book.objects.filter(title__icontains = input_word)
+           print("Books:",  books)
            result = []
            for book in books:
                data={}
-               data["label"] = book.title
+               data["title"] = book.title
                result.append(data)
-           data_json= json.dumps(result)   
-       else:
-           data_json="Error in search bar"
-       mimetype ="application/json"  
-       return HttpResponse(data_json, mimetype)  
+             
+       except Exception as e:
+           return JsonResponse({"error": str(e)}, status=500)
+       
+       return JsonResponse(result, safe=False)  
     
 class ShowBook(View):
    
@@ -60,9 +58,7 @@ class ShowBook(View):
           book = Book.objects.filter(title__icontains = value)
           result = [] 
           for attr in book:
-              print("Print de ajax-search-bar",  attr.title)
-              print("Print de ajax-search-bar",  attr.status)
-              print("Print de ajax-search-bar",  attr.cover_image)
+              
 
               data = {}              
               data["title"] = attr.title

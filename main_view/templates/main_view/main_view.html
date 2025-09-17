@@ -3,20 +3,20 @@
 <!-- <! ------------------ iMAGEN PRINCIPAL -------------------- > -->
 
 <!-- ----------------------BARRA DE BÚSQUEDA ------------------------------>
-<div class="container mb-3">
-  <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-12 form__container ">
-      <form action="" method="post" id="search-form" class="d-flex align-items-center justify-content-start" ">
-        {% csrf_token %}
-        <div class=" search-input flex-grow-1">{{ search }}
-    </div>
-    <input class="search-button " type="button" id="search-button-id" value="Search" style="margin: 15px 0 15px 0" />
-    </form>
-  </div>
+
+<div class="container form__container">
+  <form action="" method="post" id="search-form" class="search-form">
+    {% csrf_token %}
+
+    {{ search }}
+    <input class="search-button " type="button" id="search-button-id" value="Search" />
+
+  </form>
 </div>
 
-<div id="searchbar-book-container" class="col-xs-10 col-sm-offset-2 col-sm-8 col-md-offset-4 col-md-4 mx-auto"></div>
-</div>
+<!-- div con respuesta del servidor -->
+<ul id="search-results" class="results-box" style="display: none;"></ul>
+
 
 <!--                                IMAGEN PRINCIPAL                  -->
 
@@ -68,9 +68,7 @@
 </div>
 
 {% endblock main %} {% block scripts %}
-<script type="text/javascript" src="{% static 'js/js-templates/search-bar.js' %}"></script>
-<script>
-  gsap.from("#main-popup", { duration: 2, y: "70%", opacity: 0, ease: "power2.out" });
-  $("#id_querycom").autocomplete({ source: "/search_books/" });
-</script>
+<script type="text/javascript" src="{% static 'main_view/js/main_view.js' %}"></script>
+
+
 {% endblock scripts %}
