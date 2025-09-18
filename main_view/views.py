@@ -36,7 +36,8 @@ class SearchBook(View):
            result = []
            for book in books:
                data={}
-               data["title"] = book.title
+               data["title"] =book.title
+               data["id"]= book.id
                result.append(data)
              
        except Exception as e:
@@ -58,8 +59,6 @@ class ShowBook(View):
           book = Book.objects.filter(title__icontains = value)
           result = [] 
           for attr in book:
-              
-
               data = {}              
               data["title"] = attr.title
               data["status"] = attr.status

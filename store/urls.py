@@ -7,6 +7,6 @@ urlpatterns = [
 
     path("admin_books/", views_admin_books.admin_books, name = "admin_books"),
     path("", AllBooks.as_view(), name="all_books"),
-    path("<str:pk>", SingleBook.as_view(), name="single_book")
+    path("<str:pk>/", SingleBook.as_view(), name="single_book")
    
 ]

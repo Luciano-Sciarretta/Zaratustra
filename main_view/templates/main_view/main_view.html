@@ -5,17 +5,18 @@
 <!-- ----------------------BARRA DE BÚSQUEDA ------------------------------>
 
 <div class="container form__container">
-  <form action="" method="post" id="search-form" class="search-form">
+  <form action="" method="post" id="search-form" class="search-form" autocomplete="off">
     {% csrf_token %}
-
+    <div class="input-wrapper">
     {{ search }}
-    <input class="search-button " type="button" id="search-button-id" value="Search" />
-
+    <ul id="search-results" class="results-box" style="display: none;"></ul>
+    </div>
   </form>
 </div>
 
 <!-- div con respuesta del servidor -->
-<ul id="search-results" class="results-box" style="display: none;"></ul>
+
+
 
 
 <!--                                IMAGEN PRINCIPAL                  -->
