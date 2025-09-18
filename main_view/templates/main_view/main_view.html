@@ -4,18 +4,7 @@
 
 <!-- ----------------------BARRA DE BÚSQUEDA ------------------------------>
 
-<div class="container form__container">
-  <form action="" method="post" id="search-form" class="search-form" autocomplete="off">
-    {% csrf_token %}
-    <div class="input-wrapper">
-    {{ search }}
-    <ul id="search-results" class="results-box" style="display: none;"></ul>
-    </div>
-  </form>
-</div>
-
-<!-- div con respuesta del servidor -->
-
+{% include "components/search-bar.html" %}
 
 
 
