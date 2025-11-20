@@ -2,6 +2,7 @@
 from pathlib import Path
 import main_view
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,4 +145,8 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 SITE_ID = 1
 
-SESSION_COOKIE_AGE = 1209600 
+SESSION_COOKIE_AGE = 1209600
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+} 
