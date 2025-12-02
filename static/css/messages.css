@@ -1,0 +1,94 @@
+.alert {
+    margin: 0 auto;
+    padding: 16px 20px;
+    font-size: 15px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: 12px;
+    font-size: 22px;
+    max-width: 500px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-success {
+    background-color: rgba(16, 185, 129, 0.488);
+    color: white;
+}
+
+.alert-error {
+    background-color: rgba(239, 68, 68, 0.507);
+    color: white;
+}
+
+
+
+.btn-close {
+    flex-shrink: 0;
+    /* Evita que el botón se comprima */
+}
+
+/* Tablets (768px y menos) */
+
+@media (min-width: 992px) {
+    .container.mt-3 {
+        max-width: 800px;
+        /* Ajusta según prefieras: 600px, 700px, 800px */
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+}
+
+
+@media (max-width: 768px) {
+    .alert {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    .container.mt-3 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* Móviles (576px y menos) */
+@media (max-width: 576px) {
+    .container.mt-3 {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 12px !important;
+    }
+
+    .alert {
+        padding: 12px 14px;
+        font-size: 13px;
+        border-radius: 6px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn-close {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
+    }
+}
+
+/* Móviles muy pequeños (400px y menos) */
+@media (max-width: 400px) {
+    .alert {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .container.mt-3 {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}

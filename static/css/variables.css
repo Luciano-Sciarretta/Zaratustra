@@ -5,5 +5,6 @@
     --color-text-light: #FFFFFF;     
     --color-accent: #7A9E7E;        
     --color-muted: #AFAFAF;         
-    --color-highlight: #D9C6B0;      /
+    --color-highlight: #D9C6B0;
+    --color-hover: #8C292E; 
 }

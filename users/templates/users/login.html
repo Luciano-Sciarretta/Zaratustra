@@ -1,19 +1,18 @@
-{% extends "layout.html" %} {% block title %}Contacto{% endblock %} 
+{% extends "layout.html" %} {% block title %}Contacto{% endblock %}
 {% load static %} {% load i18n %} {% block users %}
 
-<div class="container"></div>
 
-<div class="container-fluid">
-  <div
-    class="row reflexion justify-content-around align-items-center border"
-    style="padding-top: 20px"
-  >
-    <div class="col-12 col-md-5 contacto_form" style="padding-bottom: 15px">
-      
-      <form action="" method="POST">{% csrf_token %}
-        <input id="user-name" type="text" name="username">
-        <input id="user-password" type="password" name="password">
-        <button type="submit" class="btn btn-danger float-right" > Sign In
+
+<div class="container">
+  <div class="row  ">
+    <div class="col-12 col-md-5 form-container">
+      <h2>Login</h2>
+      <p>Access your account to continue</p>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input id="user-name" type="text" name="username" class="form-input" >
+        <input id="user-password" type="password" name="password" class="form-input" >
+        <button type="submit" class="btn "> Sign In
         </button>
 
       </form>
@@ -21,7 +20,7 @@
   </div>
 </div>
 
-<section class="container-fluid">
+<section class="container">
   <div class="row" style="padding-top: 10px">
     <div class="col-12" style="padding: 0px">
       <br />
@@ -34,18 +33,9 @@
 {% endblock %}
 {% block scripts %}
 <script>
- 
 
-  $("input").css({
-    width: "100%",
-    "text-align": "center",
-    "margin-bottom": "7px",
-  });
-  
 
-  $("#user-name").attr("placeholder", "Name");
-  $("#user-password").attr("placeholder", "Password");
-  
+
+
 </script>
 {% endblock scripts %}
-

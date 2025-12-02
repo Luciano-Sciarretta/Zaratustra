@@ -1,4 +1,4 @@
-{% extends "layout.html" %} {% block title %}Contacto{% endblock %} {% load static %} 
+{% extends "layout.html" %} {% block title %}Contacto{% endblock %} {% load static %}
 {% load i18n %} {% block users %}
 <!-- ---------------------------------------------------------------------------
 -------------- 
@@ -6,20 +6,17 @@
 <div class="container"></div>
 
 <div class="container-fluid">
-  <div
-    class="row reflexion justify-content-around align-items-center border"
-    style="padding-top: 20px"
-  >
-    <div class="col-12 col-md-5 contacto_form" style="padding-bottom: 15px">
-      <h2 class="h1juan" style="padding-left: 15px">Are you sure you want to log out??</h2>
-      <form id="contact" action="" method="post" class="col-xs-12">
+  <div class="row reflexion justify-content-around align-items-center border" style="padding-top: 20px">
+    <div class="col-12 col-md-5 form-container" style="padding-bottom: 15px">
+      <h2 class="h1juan" style="padding-left: 15px">Are you sure you want to logout??</h2>
+      <form id="contact" action="{% url 'logout' %}" method="POST" class="col-xs-12">
         {% csrf_token %}
-       
-        <div class="col-12 form-group">{{form }}</div>
-        <div class="row justify-content-between">
-          <div class="col-4"></div>
-          <div class="col-4 " style="padding-right: 30px">
-            <button id="logout-button"  type="submit" class="col-12 btn btn-danger">Logout</button>
+
+
+        <div class="row ">
+
+          <div class="" >
+            <button id="logout-button" type="submit" class="btn ">Logout</button>
           </div>
         </div>
       </form>
@@ -35,43 +32,4 @@
   </div>
 </section>
 
-{% endblock %} {% block javascript %}
 {% endblock %}
-{% block scripts %} 
-
-<script>
-  $("#id_fecha").css({ display: "none" });
-  
-  $("#id_estado_respuesta").css({ display: "none" });
-  $("#id_estado_respuesta").parent().find("label").css({ display: "none" });
-
-  $("#formulario_contacto li").css({ "list-style": "none" });
-
-  $("input").css({
-    width: "100%",
-    "text-align": "center",
-    "margin-bottom": "7px",
-  });
-  $("textarea").css({ width: "100%", "text-align": "center" });
-
-  $("#id_nombre").attr("placeholder", "Nombre");
-  $("#id_descripcion").attr("placeholder", "Descripcion");
-  $("#id_mail").attr("placeholder", "Mail");
-  $("#id_telefono").attr("placeholder", "Teléfono");
-  $("#id_captcha_1").attr("placeholder", "Captcha");
- 
-  $(document).ready(function() {
-    $("#logout-button").click(function(event){
-      event.preventDefault()
-      
-      Object.keys(localStorage).forEach(key => {
-        if(key.startsWith('Cart')) {
-          localStorage.removeItem(key)
-        }
-      });
-      return true
-    })
-  })
-</script>
-{% endblock scripts %}
-

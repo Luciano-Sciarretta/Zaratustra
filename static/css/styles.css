@@ -5,3 +5,5 @@
 @import url('../main_view/css/main_view.css');
 @import url('../main_view/css/about_us.css');
 @import url('../main_view/css/search-bar.css');
+@import url('form.css');
+@import url('messages.css')

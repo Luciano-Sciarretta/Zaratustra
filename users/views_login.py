@@ -14,7 +14,8 @@ def login_page(request):
         
         if user is not None:
             login(request, user)
-
+            print("Métodos y atributos de request:", dir(request))
+            messages.success(request, "Login successful")
             return redirect("main_page")
         else:
             messages.error(request, "Invalid username or password. Please try again.")
