@@ -4,5 +4,9 @@ __pycache__/
 *.log
 .env
 db.sqlite3
+*.sqlite3
+*.sqlite
+*.db
+*.db-journal
 staticfiles/
 mediafiles/
