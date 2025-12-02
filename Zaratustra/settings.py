@@ -12,22 +12,29 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+db_url = os.getenv("DATABASE_URL")
+
+ # Convertir bytes a string
+
+  # Ahora sí es string
 
 DEBUG = True
 
 POSTGRES = True
 
-if POSTGRES:
-    
+if POSTGRES and db_url:
+    if isinstance(db_url, bytes):
+        db_url = db_url.decode('utf-8') 
+        
+    tmpPostgres = urlparse(db_url)
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
+        'NAME': tmpPostgres.path.lstrip('/'),
         'USER': tmpPostgres.username,
         'PASSWORD': tmpPostgres.password,
         'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+        'PORT': tmpPostgres.port or 5432,
         'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
 }
