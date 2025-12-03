@@ -14,9 +14,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 db_url = os.getenv("DATABASE_URL")
 
- # Convertir bytes a string
-
-  # Ahora sí es string
+ON_RENDER = os.getenv('RENDER') is not None
 
 DEBUG = True
 
@@ -38,6 +36,7 @@ if POSTGRES and db_url:
         'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
 }
+    print("Usando Postgres")
 else:
     
     DATABASES = {
@@ -46,7 +45,7 @@ else:
                 "NAME": BASE_DIR / "db.sqlite3",
             }
         }
-
+    print("Usando Sqlite3")
 
 
 ALLOWED_HOSTS = ["zaratustra.onrender.com", "127.0.0.1", "localhost"]

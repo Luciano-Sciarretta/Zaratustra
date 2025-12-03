@@ -1,12 +1,16 @@
+.hero-section {
+  position: relative;
+  height: 70vh;
+}
+
 #main-popup {
   background-color: #b7343bd3;
   color: var(--color-text-light);
   position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(40%);
+  top: 20%;
+  right: 10%;
   border-radius: 12px;
-  max-width: 30rem;
+  width: 30vw;
   z-index: 10;
   padding: 2rem;
   text-align: start;
@@ -20,8 +24,7 @@
 .custom-img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 1000px;
+  height: 90vh;
 }
 
 #img-container img {
@@ -40,45 +43,78 @@
 .carousel-item {
   position: relative;
   height: 600px;
- 
 }
 
 /*------------ media queries -----------*/
-@media (max-width: 1377px) {
-  html {
-    font-size: 15px;
+
+@media (max-width: 576px) {
+  #main-popup {
+    width: 80vw;
+    height: 40vh;
+    top: 4%;
+    left: 11%;
   }
 
-  #main-popup {
-    left: 35%;
-  }
-}
-
-@media (max-width: 1058px) {
-  #main-popup {
-    left: 30%;
-    transform: translateX(-30%);
-    max-width: 25rem;
+  .custom-img {
+    display: block;
+    width: 100%;
+    height:100%;
   }
 }
 
-@media (max-width: 881px) {
+@media (min-width: 577px) and (max-width: 767px) {
   #main-popup {
-    transform: translateX(-50%);
+    width: 60vw;
+    top: 10%;
+    left: 10%;
+  }
+
+  .custom-img {
+    display: block;
+    width: 100%;
+    height:60%;
+  }
+}
+
+@media  (min-width: 768px) and (max-width: 991px) {
+  #main-popup {
+    width: 50vw;
+    top: 10%;
+    left: 10%;
+  }
+
+  .custom-img {
+    display: block;
+    width: 100%;
+    height: 70vh ;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #main-popup {
+    width: 40vw;
+    top: 10%;
     left: 50%;
   }
-}
 
-@media (max-width: 500px) {
-  html {
-    font-size: 14px;
-  }
-
-  #main-popup {
-    transform: translateX(-50%);
-    bottom: 160px;
-    max-width: 300px;
-    max-height: 250px;
-    padding: 1rem;
+  .custom-img {
+    display: block;
+    width: 100%;
+    height: 60vh;
   }
 }
+
+@media ( min-width:1200px) {
+   #main-popup {
+    width: 30vw;
+    top: 10%;
+    left: 55%;
+  }
+
+  .custom-img {
+    display: block;
+    width: 100%;
+    height: 70vh;
+  }
+}
+
