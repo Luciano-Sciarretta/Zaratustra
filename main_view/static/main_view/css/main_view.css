@@ -7,8 +7,6 @@
   background-color: #b7343bd3;
   color: var(--color-text-light);
   position: absolute;
-  top: 20%;
-  right: 10%;
   border-radius: 12px;
   width: 30vw;
   z-index: 10;
@@ -24,7 +22,6 @@
 .custom-img {
   display: block;
   width: 100%;
-  height: 90vh;
 }
 
 #img-container img {
@@ -32,7 +29,16 @@
   width: 100%;
 }
 
+.carousel__container {
+  padding-top: 2rem; 
+}
+
 /* -------------------CAROUSEL-------------------------*/
+.carousel__title {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 
 .carousel-item img {
   height: 100%;
@@ -48,53 +54,68 @@
 /*------------ media queries -----------*/
 
 @media (max-width: 576px) {
-  #main-popup {
-    width: 80vw;
+  .hero-section {
     height: 40vh;
-    top: 4%;
+    overflow: hidden;
+  }
+
+  #main-popup {
+    width: 85vw;
+    height: 35vh;
+    top: 1.8%;
     left: 11%;
+    padding: 1rem;
   }
 
   .custom-img {
     display: block;
     width: 100%;
-    height:100%;
+    height: 100%;
   }
 }
+
+.carousel__title {
+  margin-top: 2rem;
+}
+
 
 @media (min-width: 577px) and (max-width: 767px) {
   #main-popup {
     width: 60vw;
     top: 10%;
-    left: 10%;
+    left: 25%;
   }
 
   .custom-img {
     display: block;
     width: 100%;
-    height:60%;
+    height: 50%;
+  }
+
+  .carousel__title {
+    margin-top: 4rem;
   }
 }
 
-@media  (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   #main-popup {
     width: 50vw;
     top: 10%;
-    left: 10%;
+    left: 40%;
   }
 
   .custom-img {
     display: block;
     width: 100%;
-    height: 70vh ;
+    height: 70vh;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   #main-popup {
-    width: 40vw;
+    width: 35vw;
     top: 10%;
-    left: 50%;
+    left: 60%;
   }
 
   .custom-img {
@@ -104,9 +125,9 @@
   }
 }
 
-@media ( min-width:1200px) {
-   #main-popup {
-    width: 30vw;
+@media (min-width:1200px) {
+  #main-popup {
+    width: 40vw;
     top: 10%;
     left: 55%;
   }
@@ -118,3 +139,9 @@
   }
 }
 
+@media (min-width: 1200px) {
+  #main-popup {
+    top: 10%;
+    left: 55%;
+  }
+}

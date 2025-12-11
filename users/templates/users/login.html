@@ -8,14 +8,20 @@
     <div class="col-12 col-md-5 form-container">
       <h2>Login</h2>
       <p>Access your account to continue</p>
-      <form action="" method="POST">
-        {% csrf_token %}
-        <input id="user-name" type="text" name="username" class="form-input" >
-        <input id="user-password" type="password" name="password" class="form-input" >
-        <button type="submit" class="btn "> Sign In
-        </button>
+      <div class="form-container">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="form-element">
+            <input id="user-name" type="text" name="username" class="form-input">
+          </div>
+          <div class="form-element">
+            <input id="user-password" type="password" name="password" class="form-input">
+          </div>
+          <button type="submit" class="btn "> Sign In
+          </button>
 
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>

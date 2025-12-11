@@ -1,17 +1,10 @@
 {% extends 'layout.html' %} {% load static %} {% block main %}
-
-<!-- <! ------------------ iMAGEN PRINCIPAL -------------------- > -->
-
-<!-- ----------------------BARRA DE BÚSQUEDA ------------------------------>
-
 {% include "components/search-bar.html" %}
-
-<!--                                IMAGEN PRINCIPAL                  -->
 
 <div class="container-fluid " id="img-container">
   <div class="row">
     <div class="col-12">
-      
+
       <div class="hero-section">
         <div class="image-container">
           <img src="https://www.educaciontrespuntocero.com/wp-content/uploads/2016/12/libros-docente.jpg"
@@ -30,9 +23,8 @@
 </div>
 
 <!---------------------------   CAROUSEL    ---------------------------------        -->
-
-<div class="container carousel__container pb-5">
-  <h1 class="carousel__title pt-5 pb-3 text-center">New in the Bookstore</h1>
+<div class="container carousel__container ">
+  <h1 class="carousel__title ">New in the Bookstore</h1>
 
 
   <div class="d-flex justify-content-center my-5">
@@ -40,7 +32,9 @@
       <div class="carousel-inner">
         {% for book in books %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          {% if book.cover_image %}
           <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}">
+          {% endif %}
         </div>
         {% endfor %}
       </div>

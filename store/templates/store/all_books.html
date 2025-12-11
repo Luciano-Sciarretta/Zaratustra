@@ -1,13 +1,13 @@
 {% extends "layout.html" %} {% load static %} {% block templatetag %} 
 {% load book_filters %}
 
-<div id="message-container">
+<!-- <div id="message-container">
   {% if messages %}
       {% for message in messages %}
           <p class="alert alert-{{ message.tags }}">{{ message }}</p>
       {% endfor %}
   {% endif %}
-</div>
+</div> -->
 <div class="container mt-5" >
   <div class="row  justify-content-start " >
   
@@ -17,8 +17,9 @@
         <h4 class="text-center card-title ">{{book.title}}</h4>
         <a href="{% url 'single_book' pk=book.id %}">
           
+            {% if book.cover_image %}
             <img src="{{book.cover_image.url}}" class="card-img-top img-fluid w-75  mx-auto" " alt="{{book.title}}">
-          
+            {% endif %}
         </a>
         <div class="card-body">
           <p class="card-text">{{ book.synopsis|truncatechars:100}}</p>

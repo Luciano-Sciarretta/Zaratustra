@@ -19,7 +19,6 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('captcha/', include('captcha.urls')),
     path('contact/', include('contact.urls')),
     path("books/", include("books.urls")),
     path("store/", include('store.urls')),

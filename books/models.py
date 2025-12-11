@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.html import format_html
 class Genre(models.Model):
     name = models.CharField(max_length = 50)
-
+    
     def __str__(self,):
         return self.name
 
@@ -13,36 +13,29 @@ class Author(models.Model):
         return self.name
     
 class Book(models.Model):
-    Stock = "En stock"
-    out_of_stock = "Sin stock"
-    
-    BOOK_APPROVAL = (
-        (Stock, "En stock"),
-        (out_of_stock, "Sin stock")
-        
-    )
 
-
-
-    status = models.CharField(max_length = 50, choices = BOOK_APPROVAL, default = 'En stock')
     title = models.CharField(max_length = 100)
-    date_of_admision = models.DateTimeField("fecha de ingreso")
     price = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE,  related_name = "libros")
-    publication_date = models.DateField("fecha de publicacion")
-    cover_image = models.ImageField("imagen de portada", upload_to='book_covers/')
+    cover_image = models.ImageField("imagen de portada", upload_to='book_covers/', default='book_covers/CoverNotAvailable.jpg' ,blank=True)
     synopsis = models.TextField()
-    slug = models.SlugField(max_length = 200, db_index = True)
     genre = models.ForeignKey(Genre, on_delete = models.CASCADE)
-    in_stock = models.PositiveIntegerField( default = 1, help_text="Number of available copies of the book.")
+    stock_quantity = models.IntegerField(default=1, verbose_name="Stock Quantity")
+    slug = models.SlugField(unique=True, max_length=200, null=True, blank=True, editable=False )
+    date_added = models.DateTimeField(auto_now_add=True)
 
 
-    def stock_product(self,):
-        if self.status == "En stock":
-            return format_html("<span style='color:#2BE6A2;'>{}</span>", self.status)
-        elif self.status == "Sin stock":
-            return format_html("<span style='color:#E60974;'>{}</span>", self.status)
+    @property
+    def is_available(self, ):
+        return self.stock_quantity > 0
 
+    #Método para el admin panel
+    
+    def available_admin(self):
+        if self.stock_quantity:
+            return format_html("<span style='color: green;'>{}</span>", self.stock_quantity)
+        else:
+            return format_html("<span style='color:red;'>{}</span>", 0)
 
 
     def get_absolute_url(self):

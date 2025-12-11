@@ -1,0 +1,57 @@
+{% extends "layout.html" %} 
+{% load static %} 
+{% block templatetag %} 
+{% load book_filters %}
+
+
+
+<div
+  class="container cards-container text-center d-flex justify-content-center align-items-center"
+>
+  <div class="row">
+    {% for book in books %}
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <p class="card-text">{{book.synopsis|slice:"95"}}</p>
+          <img
+            src="/media/{{book.cover_image}}"
+            class="card-img-top"
+            alt="..."
+          />
+          <p class="card-text">{{book.price|slice:"95"}}</p>
+
+          <input type="submit " hidden class="co-12 vervalor" value="1" />
+          <input
+            type="submit "
+            hidden
+            class="col-12 verid"
+            value="id: {{book.id}}"
+          />
+          
+          {% if book.in_stock %}
+          <button
+            type="button"
+            class="btn btn-dark agregar agregar-{{book.id}}"
+          >
+            Add to the Shopping Cart {{book.id}}
+          </button>
+          {% else %}
+          <button type="button" class="btn btn-danger agregar agregar-{{book.id}}">
+            Out of Stock {{book.id}}
+          </button>
+          {% endif %}
+          <hr />
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} 
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/js-templates/store.js' %}"> 
+
+</script>
+{% endblock scripts %}

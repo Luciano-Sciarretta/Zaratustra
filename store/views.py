@@ -32,7 +32,6 @@ class SingleBook(View):
     def get(self, request, pk):
         try:
             book = Book.objects.get(id=pk)
-            print("book", book)
         except Book.DoesNotExist:
             raise Http404("Book does not exist")
         context = {
