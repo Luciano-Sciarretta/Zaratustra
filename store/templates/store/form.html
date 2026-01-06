@@ -1,8 +1,11 @@
-{% extends "layout.html" %} {% load static %} {% block store %}
+{% extends "layout.html" %} 
+{% load static %} 
+{% block store %}
+
 <div class="container">
   <div class="row">
     <div class="form-container">
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="" method="POST" enctype="multipart/form-data" >
 
         {% csrf_token %}
 
@@ -14,7 +17,7 @@
           </div>
         
         {% endfor %}
-        <input class="btn" type="submit" value="submit">
+        <input class="btn" type="submit" value="submit" >
 
       </form>
     </div>
@@ -22,3 +25,8 @@
 </div>
 
 {% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'store/js/main.js' %}"></script>
+{% endblock scripts %}

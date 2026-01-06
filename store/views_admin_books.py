@@ -1,12 +1,12 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from store.forms import UploadForm 
-from books.models import Book
-from django.shortcuts import redirect
+from books.models import Book, Author
 from django.contrib import messages
 from django.views.generic import CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
 
 @method_decorator(login_required, name='dispatch')
 class BookCreateView(CreateView):
@@ -28,8 +28,41 @@ class BookCreateView(CreateView):
     
         
     
+def api_authors_search(request):
+    search_query = request.GET.get("q")
+    authors_list = []
+    
+    
+    if len(str(search_query)) > 2:
+        queryset = Author.objects.filter(name__icontains = search_query)
+        authors_list = list(queryset.values('id', 'name'))
+        data = {
+        "success": True,
+        "authors": authors_list,
+        "message": f"Encontrados {len(authors_list)} autores" if authors_list else "No se encontraron autores"
+        
+    }
+    else:
+        data = {
+            'success': False,
+            "authors": [],
+             "message": "Ingrese al menos 3 caracteres para buscar"
+        }
+        
+    
+    return JsonResponse(data)
+    
 
 
+
+
+
+
+
+
+
+
+    
 # def admin_books(request):
 #     params = {}
 #     if request.method == "POST":
