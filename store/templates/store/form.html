@@ -1,23 +1,26 @@
-{% extends "layout.html" %} 
-{% load static %} 
+{% extends "layout.html" %}
+{% load static %}
 {% block store %}
 
 <div class="container">
   <div class="row">
     <div class="form-container">
-      <form action="" method="POST" enctype="multipart/form-data" >
+      <form action="" method="POST" enctype="multipart/form-data">
 
         {% csrf_token %}
 
         {% for field in form %}
-       
-          <div class="form-element">
-            {{field.label_tag}}
-            {{field}}
-          </div>
-        
+
+        <div class="form-element">
+          {{field.label_tag}}
+          {{field}}
+          {% if field.name == 'author' %}
+          <ul id="suggestions-list" style="display:none;"></ul>
+          {%  endif %}
+        </div>
+
         {% endfor %}
-        <input class="btn" type="submit" value="submit" >
+        <input class="btn" type="submit" value="submit">
 
       </form>
     </div>

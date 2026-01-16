@@ -29,9 +29,9 @@ class AllBooks(View):
 
 class SingleBook(View): 
     template = "store/single_book.html"
-    def get(self, request, pk):
+    def get(self, request, slug):
         try:
-            book = Book.objects.get(id=pk)
+            book = Book.objects.get(slug=slug)
         except Book.DoesNotExist:
             raise Http404("Book does not exist")
         context = {

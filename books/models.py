@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils.html import format_html
+from django.utils.text import slugify
+
+
 class Genre(models.Model):
     name = models.CharField(max_length = 50)
     
@@ -29,13 +32,28 @@ class Book(models.Model):
     def is_available(self, ):
         return self.stock_quantity > 0
 
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            final_slug = base_slug
+            counter = 1
+
+            while Book.objects.filter(slug= final_slug).exists():
+                final_slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = final_slug
+
+        super().save(*args, **kwargs)
+
     #Método para el admin panel
     
-    def available_admin(self):
-        if self.stock_quantity:
-            return format_html("<span style='color: green;'>{}</span>", self.stock_quantity)
-        else:
-            return format_html("<span style='color:red;'>{}</span>", 0)
+    # def available_admin(self):
+    #     if self.stock_quantity:
+    #         return format_html("<span style='color: green;'>{}</span>", self.stock_quantity)
+    #     else:
+    #         return format_html("<span style='color:red;'>{}</span>", 0)
 
 
     def get_absolute_url(self):

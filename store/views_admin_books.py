@@ -30,12 +30,14 @@ class BookCreateView(CreateView):
     
 def api_authors_search(request):
     search_query = request.GET.get("q")
+    # print("Search query", search_query)
     authors_list = []
     
     
-    if len(str(search_query)) > 2:
+    if len(str(search_query)) >= 3:
         queryset = Author.objects.filter(name__icontains = search_query)
         authors_list = list(queryset.values('id', 'name'))
+        # print('authors:', authors_list)
         data = {
         "success": True,
         "authors": authors_list,

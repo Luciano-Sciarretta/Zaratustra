@@ -15,10 +15,10 @@
     <div class="col-lg-4 col-md-6 col-sm-12  card-wrapper  my-5 text-center"  >
       <div class="card p-4 w-100 text-center justify-content-center "  >
         <h4 class="text-center card-title ">{{book.title}}</h4>
-        <a href="{% url 'single_book' pk=book.id %}">
+        <a href="{% url 'single_book' slug=book.slug %}">
           
             {% if book.cover_image %}
-            <img src="{{book.cover_image.url}}" class="card-img-top img-fluid w-75  mx-auto" " alt="{{book.title}}">
+            <img src="{{book.cover_image.url}}" class="card-img-top img-fluid w-75  mx-auto"  alt="{{book.title}}">
             {% endif %}
         </a>
         <div class="card-body">
