@@ -17,25 +17,28 @@ document.addEventListener("DOMContentLoaded", function () {
         suggestionsList.style.display = 'none';
         return
       }
+      try {
+        const response = await fetch(`/store/api/authors/search/?q=${encodeURIComponent(inputValue)}`)
 
-      const response = await fetch(`/store/api/authors/search/?q=${encodeURIComponent(inputValue)}`)
+        const data = await response.json()
+        // console.log("Llega la respuesta del servidor")
 
-      const data = await response.json()
-      // console.log("Llega la respuesta del servidor")
-
-      suggestionsList.innerHTML = ''
-      for (let i = 0; i < data.authors.length; i++) {
-        let author = data.authors[i]['name']
-        let li = document.createElement('li')
-        li.textContent = author
-        suggestionsList.appendChild(li)
-        suggestionsList.style.display = 'block'
-        li.addEventListener('click', function () {
-          AUTHOR.value = author
-          suggestionsList.style.display = 'none'
-        })
+        suggestionsList.innerHTML = ''
+        for (let i = 0; i < data.authors.length; i++) {
+          let author = data.authors[i]['name']
+          let li = document.createElement('li')
+          li.textContent = author
+          suggestionsList.appendChild(li)
+          suggestionsList.style.display = 'block'
+          li.addEventListener('click', function () {
+            AUTHOR.value = author
+            suggestionsList.style.display = 'none'
+          })
+        }
+      } catch (error) {
+        console.error("Fallo en la búsqueda:", error);
       }
-    }, 500)
+    }, 300)
     // console.log("Termina el timer")
   })
 })
