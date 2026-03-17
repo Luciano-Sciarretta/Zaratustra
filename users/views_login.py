@@ -6,7 +6,7 @@ from django.contrib import messages
 
 
 def login_page(request):
-    params = {}
+    
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -21,4 +21,4 @@ def login_page(request):
             messages.error(request, "Invalid username or password. Please try again.")
             return render(request, "users/login.html")
         
-    return render(request, "users/login.html", params)
+    return render(request, "users/login.html")

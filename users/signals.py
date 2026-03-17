@@ -9,7 +9,7 @@ def create_user_information(sender, instance, created, **kwargs):
 
       if created: 
         UserInformation.objects.create(user=instance)
-        print("Se han creado los datos ")
+        
 
 @receiver(post_save, sender=UserInformation)
 def update_user_information(sender, instance, created, **kwargs):

@@ -1,27 +1,26 @@
 from django.shortcuts import render
-from .forms import CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
+from django.contrib.auth import login
+from django.contrib import messages
 
 
 def register_page(request):
     params = {}
-    form = CreateUserForm()
+    form = UserCreationForm(request.POST or None)
     params["form"] = form
 
     if request.method == "POST":
-        form=CreateUserForm(request.POST)
         if form.is_valid():
-            try:
-                form.save()
-                print("Guarda usuario")
-                return redirect("login")
-            except:
-                print("No Funca")
-                
-            
+            user = form.save()
+            messages.success(request, 'Registration complete! You are now logged in.')
+    
+            if user is not None:
+                login(request, user)
+                return redirect("main_page")
+            else:
+                return redirect('login')
         else:
-            
-            return redirect("register")
-        
+            messages.error(request, "Registration failed. Please correct the errors below")
     return render(request, "users/register.html", params)
 
