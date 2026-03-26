@@ -11,12 +11,22 @@
       <div class="form-container">
         <form action="" method="POST">
           {% csrf_token %}
-          <div class="form-element">
-            <input id="user-name" type="text" name="username" class="form-input">
+
+          {% if form.non_field_errors %}
+          <div class="alert alert-danger" style="color: red; font-weight: bold;">
+            {{ form.non_field_errors}}
           </div>
+          {% endif %}
+
+
+
+          {% for item in form %}
           <div class="form-element">
-            <input id="user-password" type="password" name="password" class="form-input">
+            <label for="{{item.id_for_label}}">{{item.label}}</label>
+            {{item}}
           </div>
+
+          {% endfor %}
           <button type="submit" class="btn "> Sign In
           </button>
 
@@ -34,14 +44,4 @@
   </div>
 </section>
 
-{% endblock %} {% block javascript %}
-
 {% endblock %}
-{% block scripts %}
-<script>
-
-
-
-
-</script>
-{% endblock scripts %}

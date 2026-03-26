@@ -47,14 +47,7 @@ class Book(models.Model):
 
         super().save(*args, **kwargs)
 
-    #Método para el admin panel
-    
-    # def available_admin(self):
-    #     if self.stock_quantity:
-    #         return format_html("<span style='color: green;'>{}</span>", self.stock_quantity)
-    #     else:
-    #         return format_html("<span style='color:red;'>{}</span>", 0)
-
+   
 
     def get_absolute_url(self):
         return f"/store/{self.pk}"

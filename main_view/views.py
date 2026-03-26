@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from books.models import Book 
 from books.forms import SearchBookForm
 from django.http import HttpResponse, JsonResponse
 import json
+from django.db.models import Q
 
 
 
@@ -30,16 +31,16 @@ class SearchBook(View):
        
        try:
            input_word = request.GET.get("q", "")   
-           print("input-word:", input_word) 
-           books = Book.objects.filter(title__icontains = input_word)
-           print("Books:",  books)
+           books = Book.objects.filter(Q(title__icontains=input_word) | Q(author__name__icontains = input_word)).distinct()
            result = []
            for book in books:
                data={}
                data["title"] =book.title
                data["id"]= book.id
+               data['slug'] = book.slug
+               data['author'] = book.author.name
                result.append(data)
-             
+        #    print(".\ndata:", data, ".\n")  
        except Exception as e:
            return JsonResponse({"error": str(e)}, status=500)
        
@@ -47,28 +48,15 @@ class SearchBook(View):
     
 class ShowBook(View):
    
-    def get(self, request):
-      if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-         
-          try:
-            value = request.GET['value']
-           
-          except:
-              print("No esta value")  
-        #   print("VAlue de showBook:", value)
-          book = Book.objects.filter(title__icontains = value)
-          result = [] 
-          for attr in book:
-              data = {}              
-              data["title"] = attr.title
-              data["status"] = attr.status
-              data["cover_image"] = attr.cover_image.url
-              result.append(data)
-          data_json = json.dumps(result)
-      else:
-          data_json = "No funca"   
-      mimetype = "application/json"
-      return HttpResponse(data_json, mimetype)
+   def get(self, request):
+       querycom = request.GET.get('querycom', "").strip()
+       
+       if querycom:
+        book = Book.objects.get(title__icontains = querycom)
+        if book:
+            return redirect('single_book', slug=book.slug)
+       
+    
     
    
 

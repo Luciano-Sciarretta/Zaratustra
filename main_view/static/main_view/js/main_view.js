@@ -1,64 +1,62 @@
 
 function showResults(data, input, resultsUl) {
   resultsUl.innerHTML = "";
+  resultsUl.style.display = "none";
 
   if (data.length === 0) {
     const li = document.createElement("li")
     li.textContent = 'No matches';
     li.classList.add("no-results");
     resultsUl.appendChild(li)
+    resultsUl.style.display = "block";
 
   } else {
     data.forEach(book => {
       const li = document.createElement("li")
-      li.textContent = book.title
+      li.innerHTML = `${book.title} - ${book.author}`
       li.classList.add("result-item")
       resultsUl.style.display = "block"
       resultsUl.appendChild(li)
-      resultsUl.style.display = "block"
+    
       // click en un resultado
-
       li.addEventListener("click", async () => {
         input.value = book.title;
+
         if (book.id) {
-          window.location.href = `/store/${book.id}/`;
+          window.location.href = `/store/${book.slug}/`;
         }
+        
       })
     });
 
   }
 }
 
-//     submit de la barra de búsqueda     //
-
-function submitInput(input, submitButton) {
-
-  submitButton.addEventListener("click", async () => {
-    const bookId = input.dataset.id
-    if (bookId) {
-      const result = await fetch(`store/${bookId}/`)
-      console.log("Result", result)
-      window.location.href = `/store/${bookId}/`;
-    }
-  })
-}
-
 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.from("#main-popup", { duration: 2, y: "70%", opacity: 0, ease: "power2.out" });
 
-
+  let debounceTimer;
   const input = document.querySelector(".my-search-input")
   const resultsUl = document.querySelector("#search-results")
   const submitButton = document.querySelector(".search-button")
 
-  input.addEventListener("input", async () => {
+  input.addEventListener("input",  () => {
     const query = input.value.trim()
 
-    if (query.length > 0) {
+    //Limpio el timer cada vez que se dispara el evento
+    clearTimeout(debounceTimer)
+
+    if (query.length > 2) {
+
+      debounceTimer = setTimeout(async function() {
+
       try {
         const response = await fetch(`search_books/?q=${query}`);
+        if (!response.ok) throw new Error("Error en el servidor");
+
         const data = await response.json()
+        // console.log("Data desde  el servidor:", data)
         showResults(data, input, resultsUl)
       }
       catch (error) {
@@ -66,12 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
         resultsUl.style.display = "block"
         resultsUl.textContent = "There was an issue with the search, please try again later."
       }
+   }, 300)
     } else {
       resultsUl.textContent = ""
     }
 
   })
-  submitInput(input, submitButton)
+  // submitInput(input, submitButton)
 
 })
 

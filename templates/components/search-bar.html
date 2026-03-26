@@ -1,11 +1,12 @@
 
 
 <div class="container form__container">
-  <form action="" method="post" id="search-form" class="search-form" autocomplete="off">
+  <form action="{% url 'show_book' %}" method="get" id="search-form" class="search-form" autocomplete="off">
     {% csrf_token %}
     <div class="input-wrapper">
     {{ search }}
     <ul id="search-results" class="results-box" style="display: none;"></ul>
     </div>
+    <button type="submit" class="btn search-button">Search</button>
   </form>
 </div>
