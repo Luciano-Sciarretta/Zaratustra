@@ -1,6 +1,5 @@
 
 from pathlib import Path
-import main_view
 import os
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
@@ -33,6 +32,7 @@ if POSTGRES and db_url:
         'PASSWORD': tmpPostgres.password,
         'HOST': tmpPostgres.hostname,
         'PORT': tmpPostgres.port or 5432,
+        'CONN_MAX_AGE': 600,
         'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
 }
@@ -155,7 +155,7 @@ if DEBUG:
                 "BACKEND": "django.core.files.storage.FileSystemStorage",
             },
             "staticfiles": {
-                "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+                "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
             },
         }
 else:

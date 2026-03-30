@@ -47,11 +47,8 @@ class Book(models.Model):
 
         super().save(*args, **kwargs)
 
-   
-
     def get_absolute_url(self):
         return f"/store/{self.pk}"
-    
 
     def __str__(self,):
         return self.title

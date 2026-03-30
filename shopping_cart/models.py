@@ -2,10 +2,6 @@ from django.db import models
 from books.models import Book
 from django.contrib.auth.models import User
 
-
-
-
-
 class Cart(models.Model): 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
@@ -19,6 +15,23 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete = models.CASCADE)
     book = models.ForeignKey(Book, on_delete = models.CASCADE)
     quantity = models.PositiveIntegerField(default = 1)
+    
+    
+    def add_to_cart(self):
+        self.quantity += 1
+        self.save()
+        
+   
+    def remove_unit(self):
+        if self.quantity > 1:
+            self.quantity -= 1
+            self.save()
+        else:
+            self.delete()
+            
+    @property
+    def get_subtotal(self):
+        return self.quantity * self.book.price
 
     def __str__(self):
         return f"{self.quantity} of book: {self.book.title} in cart of {self.cart.user.username}"
