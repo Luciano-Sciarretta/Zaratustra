@@ -15,7 +15,7 @@ db_url = os.getenv("DATABASE_URL")
 
 ON_RENDER = os.getenv('RENDER') is not None
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False").lower == 'true'
 
 POSTGRES = True
 
@@ -24,6 +24,8 @@ if POSTGRES and db_url:
         db_url = db_url.decode('utf-8') 
         
     tmpPostgres = urlparse(db_url)
+    # print(".\ntmpPostgres:", tmpPostgres.username ,".\n")
+    
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -75,7 +77,8 @@ INSTALLED_APPS = [
     "shopping_cart.apps.ShoppingCartConfig",
     "api.apps.ApiConfig",
     "rest_framework",
-    "django.contrib.sitemaps"
+    "django.contrib.sitemaps",
+    
     
 
 ]
@@ -104,6 +107,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "shopping_cart.context_processors.cart_count",
             ],
         },
     },

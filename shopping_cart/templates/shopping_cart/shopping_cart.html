@@ -7,18 +7,24 @@
 <div class="container mt-5 ">
     <div class="row  justify-content-start  ">
 
-        {% for book in cart_books %}
+        {% for cart_item in cart_items %}
         <div class="col-lg-4 col-md-6 col-sm-12  card-wrapper  my-5 text-center ">
             <div class="card p-4 w-100 text-center justify-content-center">
-                <h4 class="text-center card-title">{{ book.title }}</h4>
-                <img src="{{ book.cover_image.url }}" class="card-img-top img-fluid w-75  mx-auto" alt="...">
+                <h4 class="text-center card-title">{{ cart_item.book.title }}</h4>
+                <img src="{{ cart_item.book.cover_image.url }}" class="card-img-top img-fluid w-75  mx-auto" alt="...">
                 <div class="card-body">
+                    
+                    <div class="quantity">
+                        <p>Quantity:  <strong>{{cart_item.quantity}}</strong></p>
+                    </div>
 
-                    <p class="card-text">{{ book.synopsis|truncatechars:120 }}</p>
-                    <form action="{% url 'remove_from_cart' book.id %}" method="POST">
+
+
+                    <p class="card-text">{{ cart_item.book.synopsis|truncatechars:120 }}</p>
+                    <form action="{% url 'remove_from_cart' cart_item.book.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit"  data-book-id='{{book.id}}' class="card-button removeBookBtn"
-                            href="" class="btn btn-primary">Remove from cart</buttontype>
+                        <button type="submit"  data-book-id='{{cart_item.book.id}}' class="card-button removeBookBtn"
+                            href="" class="btn btn-primary">Remove from cart</button>
                     </form>
                 </div>
             </div>

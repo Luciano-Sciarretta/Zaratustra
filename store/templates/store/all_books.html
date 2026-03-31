@@ -22,7 +22,11 @@
             <input type="text" hidden name="book_title" value="{{book.title}}">
             <input type="text" hidden name="book_id" value="{{book.id}}">
             <input type="text" hidden name="book_value" value="1">
-            <input type="submit" value=" add to cart" class="card-button">
+            {% if not book.is_available  %}
+            <input type="submit" value=" Not Available" disabled class="card-button ">
+            {% else %}
+            <input type="submit" value=" add to cart" class="card-button ">
+            {% endif %}
           </form>
         </div>
       </div>
@@ -31,8 +35,5 @@
   </div>
 </div>
 
-{% endblock %} {% block scripts %}
-<script src="{% static 'js/js-templates/localStorage-cart.js' %}"></script>
-{% endblock scripts %}
+{% endblock %} 
 
-<!-- a ver si funca -->

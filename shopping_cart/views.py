@@ -16,12 +16,12 @@ class ShowCartUser(LoginRequiredMixin,View):
         
       user = self.request.user
       cart = Cart.objects.filter(user = user).first()
-      cart_books = cart.books.all() if cart else []
+      cart_items = cart.cartitem_set.all() if cart else []
       
       params = {
-          "user": user,
+          
           "cart": cart,
-          "cart_books": cart_books,
+          "cart_items": cart_items,
       }
       return render(request, self.template, params)
   
@@ -47,7 +47,8 @@ def add_to_cart(request):
             return redirect('all_books')
             
         else:
-          pass
+          messages.error(request, "The book isn't available")
+          return redirect('all_books')
  
 
 @csrf_protect

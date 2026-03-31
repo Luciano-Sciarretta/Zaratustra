@@ -1,33 +1,27 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid navbar-container d-flex align-items-center">
-    <a class="navbar-brand" href="{% url 'main_page' %}"
-      ><img id="logo" src="/media/assets/logo zaratustra.png" alt="" />
+    <a class="navbar-brand" href="{% url 'main_page' %}"><img id="logo"
+        src="{% static 'images/zaratustra.jpg'  %}" alt="" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav nav-ul ms-auto">
-        
+
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'main_page' %}">Home</a>
         </li>
-        <li  class="nav-item" >
+        <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'all_books' %}">
-            Bookstore</a
-          >
+            Bookstore</a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about_us' %}">Our Story</a>
         </li>
@@ -45,28 +39,18 @@
         {% endif %}
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{user}}
           </a>
           {% endif %}
           <ul class="dropdown-menu">
             {% if user.is_authenticated %}
             <li>
-              <a class="dropdown-item" href="{% url 'profile' user.id %}"
-                >Profile</a
-              >
+              <a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a>
             </li>
             {% endif %} {% if user.is_authenticated %}
             <li>
-              <a class="dropdown-item" href="{% url 'admin_books' %}"
-                >Add/Modify Books</a
-              >
+              <a class="dropdown-item" href="{% url 'admin_books' %}">Add/Modify Books</a>
             </li>
             {% endif %}
           </ul>
@@ -77,18 +61,24 @@
 
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url  'shopping_cart' %}"
-            ><i class="fa-solid fa-cart-shopping" style="font-size: 32px"></i
-          ></a>
+          <a class="nav-link position-relative" href="{% url 'shopping_cart' %}">
+            <i class="fa-solid fa-cart-shopping" style="font-size: 28px"></i>
+            {% if cart_count > 0 %}
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shopping-cart-count">
+              {{ cart_count }}
+
+            </span>
+            {% endif %}
+          </a>
         </li>
         {% endif %}
-        
-      
+
+
       </ul>
     </div>
   </div>
 </nav>
-<div
-  class="container-fluid open-daily text-center d-flex justify-content-center align-items-center"
-  <strong>Open Daily:</strong>&nbsp;&nbsp;08:00am - 19:00pm
+<div class="container-fluid open-daily text-center d-flex justify-content-center align-items-center" <strong>Open
+  Daily:</strong>&nbsp;&nbsp;08:00am - 19:00pm
 </div>
