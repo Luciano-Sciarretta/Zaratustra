@@ -15,7 +15,8 @@ db_url = os.getenv("DATABASE_URL")
 
 ON_RENDER = os.getenv('RENDER') is not None
 
-DEBUG = os.getenv("DEBUG", "False").lower == 'true'
+DEBUG = str(os.getenv("DEBUG", "False")).strip().lower() == "true"
+print("Debug:", DEBUG)
 
 POSTGRES = True
 
