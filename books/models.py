@@ -20,7 +20,7 @@ class Book(models.Model):
     title = models.CharField(max_length = 100)
     price = models.IntegerField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE,  related_name = "libros")
-    cover_image = models.ImageField("imagen de portada", upload_to='book_covers/', default='book_covers/CoverNotAvailable.jpg' ,blank=True)
+    cover_image = models.ImageField("imagen de portada", upload_to='book_covers/', blank=True)
     synopsis = models.TextField()
     genre = models.ForeignKey(Genre, on_delete = models.CASCADE)
     stock_quantity = models.IntegerField(default=1, verbose_name="Stock Quantity")
@@ -28,6 +28,15 @@ class Book(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
 
+    
+    @property
+    def cover_image_url(self):
+        if self.cover_image and hasattr(self.cover_image, 'url'):
+            return self.cover_image.url
+        
+        return 'https://res.cloudinary.com/du3lcezpw/image/upload/v1774558137/CoverNotAvailable_go6hye.jpg'
+    
+    
     @property
     def is_available(self, ):
         return self.stock_quantity > 0

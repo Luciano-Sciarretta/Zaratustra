@@ -32,8 +32,8 @@
       <div class="carousel-inner">
         {% for book in books %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
-          {% if book.cover_image %}
-          <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}">
+          {% if book.cover_image_url %}
+          <img src="{{ book.cover_image_url }}" class="d-block w-100" alt="{{ book.title }}">
           {% endif %}
         </div>
         {% endfor %}
