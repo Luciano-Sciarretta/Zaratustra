@@ -16,7 +16,7 @@ db_url = os.getenv("DATABASE_URL")
 ON_RENDER = os.getenv('RENDER') is not None
 
 DEBUG = str(os.getenv("DEBUG", "False")).strip().lower() == "true"
-print("Debug:", DEBUG)
+print("Debug:", DEBUG, "type:", type(DEBUG))
 
 POSTGRES = os.getenv('POSTGRES', 'False').lower() == 'true'
 print("Postgres:", POSTGRES,  type(POSTGRES))
@@ -155,7 +155,12 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('API_KEY'),
     'API_SECRET': os.getenv('API_SECRET')
 }
-if DEBUG:
+
+USE_CLOUDIARY = os.getenv('USE_CLOUDINARY', 'false').lower() == 'true'
+print("USE_CLOUDINARY:", USE_CLOUDIARY, type(USE_CLOUDIARY))
+
+
+if USE_CLOUDIARY:
     STORAGES = {
             "default": {
                 "BACKEND": "django.core.files.storage.FileSystemStorage",
