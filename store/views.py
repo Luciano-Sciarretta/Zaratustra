@@ -37,7 +37,7 @@ class SingleBook(View):
         context = {
             "title": book.title,
             "description": book.synopsis,
-            "image": book.cover_image,
+            "image": book.cover_image_url,
             "author": book.author,
             "price": book.price
         }
