@@ -64,9 +64,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'cloudinary_storage',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
-    #'cloudinary',
+    'cloudinary',
     #TERCEROS
     
     
@@ -160,7 +160,7 @@ USE_CLOUDIARY = os.getenv('USE_CLOUDINARY', 'false').lower() == 'true'
 print("USE_CLOUDINARY:", USE_CLOUDIARY, type(USE_CLOUDIARY))
 
 
-if USE_CLOUDIARY:
+if not USE_CLOUDIARY:
     STORAGES = {
             "default": {
                 "BACKEND": "django.core.files.storage.FileSystemStorage",
