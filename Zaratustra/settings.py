@@ -58,13 +58,13 @@ ALLOWED_HOSTS = ["zaratustra.onrender.com", "127.0.0.1", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary_storage',
     'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',  
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     #TERCEROS
@@ -156,11 +156,11 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('API_SECRET')
 }
 
-USE_CLOUDIARY = os.getenv('USE_CLOUDINARY', 'false').lower() == 'true'
-print("USE_CLOUDINARY:", USE_CLOUDIARY, type(USE_CLOUDIARY))
+USE_CLOUDINARY = os.getenv('USE_CLOUDINARY', 'false').lower() == 'true'
+print("USE_CLOUDINARY:", USE_CLOUDINARY, type(USE_CLOUDINARY))
 
 
-if not USE_CLOUDIARY:
+if not USE_CLOUDINARY:
     STORAGES = {
             "default": {
                 "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -175,7 +175,7 @@ else:
                 "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
             },
             "staticfiles": {
-                "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+                "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
             },
         }
 
@@ -198,7 +198,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = "/"
-LOGIN_URL = "django.contrib.auth.views.login"
+LOGIN_URL = "login"
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 SITE_ID = 1
