@@ -18,7 +18,8 @@ ON_RENDER = os.getenv('RENDER') is not None
 DEBUG = str(os.getenv("DEBUG", "False")).strip().lower() == "true"
 print("Debug:", DEBUG)
 
-POSTGRES = True
+POSTGRES = os.getenv('POSTGRES', 'False').lower() == 'true'
+print("Postgres:", POSTGRES,  type(POSTGRES))
 
 if POSTGRES and db_url:
     if isinstance(db_url, bytes):
