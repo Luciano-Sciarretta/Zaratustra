@@ -51,11 +51,12 @@ class ShowBook(View):
    def get(self, request):
        querycom = request.GET.get('querycom', "").strip()
        
+       
        if querycom:
-        book = Book.objects.get(title__icontains = querycom)
+        book = Book.objects.filter(Q(title__icontains=querycom) | Q(author__name__icontains = querycom)).distinct().first()
         if book:
             return redirect('single_book', slug=book.slug)
-       
+       return redirect('main_page')
     
     
    
